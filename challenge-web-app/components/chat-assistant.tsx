@@ -229,7 +229,7 @@ export default function ChatSupport() {
             <Button
               className="p-6 rounded-lg hover:cursor-pointer bg-emerald-400 hover:bg-emerald-500"
               onClick={() => {
-                engine.interruptGenerate();
+                engine && engine.interruptGenerate();
               }}
             >
               <Ban className="size-6" />
