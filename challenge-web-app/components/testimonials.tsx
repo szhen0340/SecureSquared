@@ -28,11 +28,10 @@ export default function Testimonials() {
               <p className="text-zinc-300 italic mb-6 flex-grow">
                 "FinanceGuard AI has revolutionized our fraud detection
                 capabilities. We've seen a 78% reduction in false positives
-                while catching sophisticated attacks that would have previously
-                gone unnoticed. The system adapts to new threats faster than
-                anything we've implemented before, allowing our team to focus on
-                more strategic initiatives rather than chasing down false
-                alarms."
+                while catching attacks that would have previously gone
+                unnoticed. The system adapts to new threats faster than anything
+                we've implemented before, allowing our team to focus on more
+                strategic initiatives rather than chasing down false alarms."
               </p>
               <div className="flex items-center">
                 <div className="h-10 w-10 rounded-full bg-zinc-800 mr-3 flex items-center justify-center">
@@ -57,8 +56,9 @@ export default function Testimonials() {
                 "HealthSync AI has transformed how we protect sensitive patient
                 data. The privacy-preserving analytics allow us to gain valuable
                 insights while maintaining HIPAA compliance. Implementation was
-                seamless, and the system's ability to detect unusual access
-                patterns has already prevented several potential data breaches."
+                seamless for our developers, and the system's ability to detect
+                unusual access patterns has already prevented several potential
+                critical data breaches."
               </p>
               <div className="flex items-center">
                 <div className="h-10 w-10 rounded-full bg-zinc-800 mr-3 flex items-center justify-center">

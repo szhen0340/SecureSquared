@@ -1,4 +1,12 @@
-import { BadgeCheck, Box, Clock, Lock, Radar, ShieldCheck } from "lucide-react";
+import {
+  ArrowRight,
+  BadgeCheck,
+  Box,
+  Clock,
+  Lock,
+  Radar,
+  ShieldCheck,
+} from "lucide-react";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 
@@ -101,21 +109,7 @@ export default function About() {
 
           <Button className="bg-emerald-500 hover:bg-emerald-600 text-white">
             Learn About Our Approach
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="ml-2"
-            >
-              <path d="M5 12h14" />
-              <path d="m12 5 7 7-7 7" />
-            </svg>
+            <ArrowRight />
           </Button>
         </div>
       </div>

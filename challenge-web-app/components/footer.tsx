@@ -1,134 +1,104 @@
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { Github, Linkedin, Shield, Twitter } from "lucide-react";
+import { Shield, ExternalLink, Lock, Code, Terminal } from "lucide-react";
+import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="relative z-10 bg-zinc-950  backdrop-blur-sm pt-24">
-      <div className="mx-auto max-w-7xl px-4 py-12 md:py-16">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {/* Company Info */}
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="h-8 w-8 rounded-lg bg-emerald-500/20 flex items-center justify-center">
-                <Shield className="text-emerald-400" />
-              </div>
-              <span className="text-xl font-bold text-zinc-100">
-                SecureSquared
-              </span>
-            </div>
-            <p className="text-zinc-400 mb-4">
-              Pioneering AI-powered security solutions for the digital age.
-              Protect your assets with adaptive intelligence.
-            </p>
-            <div className="flex space-x-4">
-              {/* Social Media Icons */}
-              {["twitter", "linkedin", "github"].map((social) => (
-                <a
-                  key={social}
-                  href="#"
-                  className="text-zinc-500 hover:text-emerald-400 transition-colors"
-                >
-                  <span className="sr-only">{social}</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    {social === "twitter" && <Twitter />}
-                    {social === "linkedin" && <Linkedin />}
-                    {social === "github" && <Github />}
-                  </svg>
-                </a>
-              ))}
-            </div>
+    <footer className="relative z-10 bg-gradient-to-b from-zinc-900 to-zinc-950 pt-16">
+      <div className="mx-auto max-w-7xl px-6">
+        {/* Top section with logo and description */}
+        <div className="flex flex-col items-center text-center mb-12">
+          <div className="flex items-center gap-3 mb-4">
+            <Shield className="text-emerald-400 size-10" />
+            <span className="text-2xl font-bold text-zinc-100">
+              SecureSquared
+            </span>
           </div>
+          <p className="text-zinc-400 max-w-xl">
+            Pioneering AI-powered security solutions for the digital age.
+            Protect your assets with adaptive intelligence.
+          </p>
+        </div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-zinc-100 font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              {["Home", "About", "Products", "Pricing", "Contact"].map(
-                (link) => (
-                  <li key={link}>
-                    <a
-                      href="#"
-                      className="text-zinc-400 hover:text-emerald-400 transition-colors"
-                    >
-                      {link}
-                    </a>
-                  </li>
-                )
-              )}
-            </ul>
-          </div>
-
-          {/* Products */}
-          <div>
-            <h3 className="text-zinc-100 font-semibold mb-4">Our Products</h3>
-            <ul className="space-y-2">
-              {[
-                "FinanceGuard AI",
-                "HealthSync AI",
-                "SecureHome AI",
-                "Enterprise Solutions",
-                "Custom Integration",
-              ].map((product) => (
-                <li key={product}>
+        {/* Main links section */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 py-8 border-t border-b border-zinc-800">
+          {/* Advcaned Column */}
+          <div className="flex flex-col items-center md:items-start">
+            <h3 className="text-zinc-100 font-mono text-lg mb-6 flex items-center">
+              <Lock className="mr-2 h-5 w-5 text-emerald-400" />
+              <span>ADVANCED</span>
+            </h3>
+            <ul className="space-y-3 text-center md:text-left">
+              {["FinanceGuard", "HealthSync", "SecureHome"].map((link) => (
+                <li key={link}>
                   <a
-                    href="#"
-                    className="text-zinc-400 hover:text-emerald-400 transition-colors"
+                    href={link.toLowerCase()}
+                    className="text-zinc-400 hover:text-emerald-400 transition-colors inline-flex items-center"
                   >
-                    {product}
+                    <span>{link}</span>
+                    <ExternalLink className="ml-1 h-3 w-3 opacity-70" />
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Newsletter Signup */}
-          <div>
-            <h3 className="text-zinc-100 font-semibold mb-4">Stay Updated</h3>
-            <p className="text-zinc-400 mb-4">
-              Subscribe to our newsletter for the latest security insights and
-              product updates.
-            </p>
-            <form className="space-y-2">
-              <Input
-                type="email"
-                placeholder="Enter your email"
-                className="bg-zinc-800 border-zinc-700 text-zinc-100 placeholder-zinc-500"
-              />
-              <Button className="w-full bg-emerald-500 hover:bg-emerald-600 text-white">
-                Subscribe
-              </Button>
-            </form>
+          {/* Beginner Column */}
+          <div className="flex flex-col items-center md:items-start">
+            <h3 className="text-zinc-100 font-mono text-lg mb-6 flex items-center">
+              <Terminal className="mr-2 h-5 w-5 text-emerald-400" />
+              <span>BEGINNER</span>
+            </h3>
+            <ul className="space-y-3 text-center md:text-left">
+              {["Careers", "Blog", "Signin"].map((link) => (
+                <li key={link}>
+                  <a
+                    href={link.toLowerCase()}
+                    className="text-zinc-400 hover:text-emerald-400 transition-colors inline-flex items-center"
+                  >
+                    <span>{link}</span>
+                    <ExternalLink className="ml-1 h-3 w-3 opacity-70" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* CTF Challenge Hub Column */}
+          <div className="flex flex-col items-center md:items-start">
+            <h3 className="text-zinc-100 font-mono text-lg mb-6 flex items-center">
+              <Code className="mr-2 h-5 w-5 text-emerald-400" />
+              <span>CHALLENGE HUB</span>
+            </h3>
+            <div className="bg-zinc-900/50 border border-zinc-800 rounded-lg p-4 w-full">
+              <p className="text-zinc-300 mb-4 text-sm">
+                Check out other cybersecurity challenges at Capture the Flame!
+              </p>
+              <Link href="">
+                <Button
+                  variant="outline"
+                  className="w-full bg-zinc-800 hover:bg-emerald-500/20 text-emerald-400 border-emerald-500/30 hover:cursor-pointer"
+                >
+                  Go to hub
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
 
-        <Separator className="my-8 bg-zinc-800" />
-
         {/* Bottom Footer */}
-        <div className="flex flex-col md:flex-row justify-between items-center text-zinc-400 text-sm">
-          <p>&copy; 2025 SecureSquared.</p>
-          <div className="flex space-x-4 mt-4 md:mt-0">
-            <a href="#" className="hover:text-emerald-400 transition-colors">
-              Privacy Policy
-            </a>
-            <a href="#" className="hover:text-emerald-400 transition-colors">
-              Terms of Service
-            </a>
-            <a href="#" className="hover:text-emerald-400 transition-colors">
-              Cookie Settings
-            </a>
+        <div className="py-8 flex flex-col md:flex-row justify-between items-center">
+          <div className="flex items-center space-x-2 mb-4 md:mb-0">
+            <div className="h-3 w-3 rounded-full bg-emerald-500 animate-pulse"></div>
+            <p className="text-zinc-500 text-sm font-mono">
+              SYSTEM STATUS: ONLINE
+            </p>
           </div>
+
+          <p className="text-zinc-500 text-sm">
+            &copy; 2025 SecureSquared. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

@@ -1,6 +1,7 @@
-import { Activity, CreditCard, Home } from "lucide-react";
+import { Activity, ArrowRight, Check, CreditCard, Home } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
+import Link from "next/link";
 
 export default function Products() {
   return (
@@ -42,45 +43,20 @@ export default function Products() {
                   key={feature}
                   className="flex items-center gap-2 text-sm text-zinc-300"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="text-emerald-400"
-                  >
-                    <path d="M20 6 9 17l-5-5" />
-                  </svg>
+                  <Check className="text-emerald-400 size-4" />
                   {feature}
                 </li>
               ))}
             </ul>
-            <Button
-              variant="outline"
-              className="w-full border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-emerald-400 group-hover:border-emerald-500/50"
-            >
-              Learn More
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="ml-2"
+            <Link href="/financeguard">
+              <Button
+                variant="outline"
+                className="w-full border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-emerald-400 group-hover:border-emerald-500/50 hover:cursor-pointer"
               >
-                <path d="M5 12h14" />
-                <path d="m12 5 7 7-7 7" />
-              </svg>
-            </Button>
+                Learn More
+                <ArrowRight className="size-4" />
+              </Button>
+            </Link>
           </div>
         </Card>
 
@@ -109,45 +85,20 @@ export default function Products() {
                   key={feature}
                   className="flex items-center gap-2 text-sm text-zinc-300"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="text-emerald-400"
-                  >
-                    <path d="M20 6 9 17l-5-5" />
-                  </svg>
+                  <Check className="text-emerald-400 size-4" />
                   {feature}
                 </li>
               ))}
             </ul>
-            <Button
-              variant="outline"
-              className="w-full border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-emerald-400 group-hover:border-emerald-500/50"
-            >
-              Learn More
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="ml-2"
+            <Link href="/healthsync">
+              <Button
+                variant="outline"
+                className="w-full border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-emerald-400 group-hover:border-emerald-500/50 hover:cursor-pointer"
               >
-                <path d="M5 12h14" />
-                <path d="m12 5 7 7-7 7" />
-              </svg>
-            </Button>
+                Learn More
+                <ArrowRight className="size-4" />
+              </Button>
+            </Link>
           </div>
         </Card>
 
@@ -176,45 +127,20 @@ export default function Products() {
                   key={feature}
                   className="flex items-center gap-2 text-sm text-zinc-300"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="text-emerald-400"
-                  >
-                    <path d="M20 6 9 17l-5-5" />
-                  </svg>
+                  <Check className="text-emerald-400 size-4" />
                   {feature}
                 </li>
               ))}
             </ul>
-            <Button
-              variant="outline"
-              className="w-full border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-emerald-400 group-hover:border-emerald-500/50"
-            >
-              Learn More
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="ml-2"
+            <Link href="/securehome">
+              <Button
+                variant="outline"
+                className="w-full border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-emerald-400 group-hover:border-emerald-500/50 hover:cursor-pointer"
               >
-                <path d="M5 12h14" />
-                <path d="m12 5 7 7-7 7" />
-              </svg>
-            </Button>
+                Learn More
+                <ArrowRight className="size-4" />
+              </Button>
+            </Link>
           </div>
         </Card>
       </div>

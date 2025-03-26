@@ -28,8 +28,7 @@ export default function Hero() {
             </Button>
             <Button
               size="lg"
-              variant="outline"
-              className="border-zinc-700 text-white hover:bg-zinc-800 hover:text-white"
+              className="border-white border-1 hover:bg-zinc-800 text-white"
             >
               Watch Demo
             </Button>
