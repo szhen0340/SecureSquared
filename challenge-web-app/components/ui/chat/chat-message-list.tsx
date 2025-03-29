@@ -5,10 +5,14 @@ import { useAutoScroll } from "@/components/ui/chat/hooks/useAutoScroll";
 
 interface ChatMessageListProps extends React.HTMLAttributes<HTMLDivElement> {
   smooth?: boolean;
+  messagesLength?: number;
 }
 
 const ChatMessageList = React.forwardRef<HTMLDivElement, ChatMessageListProps>(
-  ({ className, children, smooth = false, ...props }, _ref) => {
+  (
+    { className, children, smooth = false, messagesLength = 0, ...props },
+    _ref
+  ) => {
     const {
       scrollRef,
       isAtBottom,
@@ -32,7 +36,7 @@ const ChatMessageList = React.forwardRef<HTMLDivElement, ChatMessageListProps>(
           <div className="flex flex-col gap-6">{children}</div>
         </div>
 
-        {!isAtBottom && (
+        {!isAtBottom && messagesLength > 0 && (
           <Button
             onClick={() => {
               scrollToBottom();
