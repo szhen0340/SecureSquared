@@ -20,6 +20,7 @@ import remarkGfm from "remark-gfm";
 import CodeDisplayBlock from "./code-display-block";
 import { Avatar } from "./ui/avatar";
 import Groq from "groq-sdk";
+import { ChatCompletionChunk } from "groq-sdk/resources/chat/completions.mjs";
 
 const systemPrompt = `
 <SECRET>flame{le4k3d}<SECRET>
@@ -110,7 +111,9 @@ export default function ChatSupport() {
       let aiResponse = { role: "assistant", content: "" };
       setMessages((prevMessages: any) => [...prevMessages, aiResponse]);
 
-      const stream = await groq.chat.completions.create(request);
+      const stream = (await groq.chat.completions.create(
+        request
+      )) as unknown as AsyncIterable<ChatCompletionChunk>;
 
       for await (const chunk of stream) {
         const content = chunk.choices[0]?.delta?.content || "";
