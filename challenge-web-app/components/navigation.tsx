@@ -20,7 +20,7 @@ export default function Navigation() {
         <div className="hidden md:flex items-center gap-6">
           {["FinanceGuard", "HealthSync", "SecureHome", "Careers", "Blog"].map(
             (item) => (
-              <a
+              <Link
                 key={item}
                 href={"/" + item.toLowerCase()}
                 className={`text-sm ${
@@ -30,7 +30,7 @@ export default function Navigation() {
                 }`}
               >
                 {item}
-              </a>
+              </Link>
             )
           )}
         </div>
