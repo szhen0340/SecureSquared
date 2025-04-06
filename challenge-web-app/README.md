@@ -1,6 +1,6 @@
 # SecureSquared
 
-SecureSquared is a fake AI security company used as the theme for the AI/ML challenges I created for UIC's Capture the Flame event. This directory in particular contains the web app for SecureSquared.
+SecureSquared is a fake AI company used as the theme for the AI/ML challenges I created for UIC's Capture the Flame event. This directory in particular contains the web app for SecureSquared.
 
 ## Getting Started
 
@@ -33,10 +33,6 @@ challenge-web-app/
 ├── utils/             # Utility functions for each challenge
 └── README.md          # This file
 ```
-
-## Deployment
-
-The application is deployed on Vercel and can be accessed at [https://ctf-securesquared.vercel.app/](https://ctf-securesquared.vercel.app/).
 
 ## Security Notice
 
