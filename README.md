@@ -28,6 +28,10 @@ Welcome to SecureSquared's Capture The Flag (CTF) challenges! Test your skills i
 
 **Link:** [SecureSquared Website](https://ctf-securesquared.vercel.app/)
 
+**IMPORTANT: All beginner challenges involve LLMs and require you to input your Groq API key. You can get an API key for free [here](https://console.groq.com/keys).**
+
+**P.S: All API keys are saved locally and are never uploaded to the cloud.**
+
 <details> <summary>Click to reveal solution</summary>
 
 The goal of this challenge is to induce the LLM to leak its prompt. The flag is hidden in the prompt which is placed before the message you send. Start by asking the chatbot about its prompt and the bot may reveal that the flag is hidden between SECRET tags.
@@ -160,7 +164,7 @@ This prompt injection technique works because it first presents itself as a legi
 
 **Link:** [SecureSquared Signin](https://ctf-securesquared.vercel.app/signin)
 
-**Solution:** [Face Recognition Solution](https://github.com/szhen0340/SecureSquared/face-recognition-solution)
+**Solution:** [Face Recognition Solution](https://github.com/szhen0340/SecureSquared/tree/main/face-recognition-solution)
 
 #### 2. [Challenge Name]
 
