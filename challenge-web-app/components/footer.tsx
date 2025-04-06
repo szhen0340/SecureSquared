@@ -75,7 +75,7 @@ export default function Footer() {
               <p className="text-zinc-300 mb-4 text-sm">
                 Check out other cybersecurity challenges at Capture the Flame!
               </p>
-              <Link href="">
+              <Link href="https://capturetheflame.ctfd.io/">
                 <Button
                   variant="outline"
                   className="w-full bg-zinc-800 hover:bg-emerald-500/20 text-emerald-400 border-emerald-500/30 hover:cursor-pointer"
