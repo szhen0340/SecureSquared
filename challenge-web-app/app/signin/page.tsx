@@ -2,7 +2,6 @@
 
 import { useState, useRef, useCallback, useEffect } from "react";
 import Webcam from "react-webcam";
-import * as faceapi from "face-api.js";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -22,35 +21,32 @@ import {
   Shield,
   AlertCircle,
 } from "lucide-react";
-import { getMessage } from "@/utils/signin/get-message";
 import Link from "next/link";
+import { loadModels } from "@/utils/signin/load-models";
+import { fileToDataUrl } from "@/utils/signin/process-images";
+import { verifyFace, VerificationResult } from "@/utils/signin/verify-face";
 
 export default function LoginPage() {
-  const [capturedImage, setCapturedImage] = useState(null);
+  const [capturedImage, setCapturedImage] = useState<string>("");
   const [isCapturing, setIsCapturing] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [modelsLoaded, setModelsLoaded] = useState(false);
-  const [verificationResult, setVerificationResult] = useState<any>(null);
-  const [errorMessage, setErrorMessage] = useState<any>(null);
+  const [verificationResult, setVerificationResult] =
+    useState<VerificationResult | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const webcamRef = useRef<any>(null);
 
   useEffect(() => {
-    const loadModels = async () => {
-      try {
-        await Promise.all([
-          faceapi.nets.ssdMobilenetv1.loadFromUri("/models"),
-          faceapi.nets.faceLandmark68Net.loadFromUri("/models"),
-          faceapi.nets.faceRecognitionNet.loadFromUri("/models"),
-        ]);
-        setModelsLoaded(true);
-      } catch (error) {
-        console.error("Error loading face-api.js models:", error);
+    const initModels = async () => {
+      const loaded = await loadModels();
+      setModelsLoaded(loaded);
+      if (!loaded) {
         setErrorMessage("Failed to load face recognition models");
       }
     };
 
-    loadModels();
+    initModels();
   }, []);
 
   const capture = useCallback(() => {
@@ -61,77 +57,16 @@ export default function LoginPage() {
     }
   }, [webcamRef]);
 
-  const handleFileUpload = (event: any) => {
+  const handleFileUpload = async (event: any) => {
     const file = event.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setCapturedImage(reader.result as any);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const verifyFace = async (imageUrl: string) => {
-    try {
-      const target = await fetch("/signin.json").then((res) => res.json());
-      const targetDescriptor = new Float32Array(Object.values(target.match));
-
-      const img = new Image();
-      await new Promise((resolve, reject) => {
-        img.onload = resolve;
-        img.onerror = reject;
-        img.src = imageUrl;
-      });
-      const detections = await faceapi
-        .detectAllFaces(img)
-        .withFaceLandmarks()
-        .withFaceDescriptors();
-
-      if (detections.length === 0) {
-        return {
-          verified: false,
-          outputPath: null,
-          message: "No face detected",
-        };
+      try {
+        const dataUrl = await fileToDataUrl(file);
+        setCapturedImage(dataUrl);
+      } catch (error) {
+        console.error("Error processing file:", error);
+        setErrorMessage("Failed to process the uploaded image");
       }
-
-      const face = detections.reduce((prev, current) => {
-        const prevArea = prev.detection.box.width * prev.detection.box.height;
-        const currentArea =
-          current.detection.box.width * current.detection.box.height;
-        return prevArea > currentArea ? prev : current;
-      });
-
-      const distance = faceapi.euclideanDistance(
-        face.descriptor,
-        targetDescriptor
-      );
-
-      const similarity = 1 - Math.min(distance, 1.0);
-
-      const canvas = document.createElement("canvas");
-      canvas.width = img.width;
-      canvas.height = img.height;
-      const ctx = canvas.getContext("2d");
-
-      if (ctx) {
-        ctx.drawImage(img, 0, 0, img.width, img.height);
-      }
-
-      const outputPath = canvas.toDataURL("image/jpeg");
-
-      const message = getMessage(similarity);
-
-      return {
-        verified: similarity > 0.6,
-        outputPath,
-        similarity,
-        message: message,
-      };
-    } catch (error) {
-      console.error("Error in face verification:", error);
-      throw new Error("Face verification failed");
     }
   };
 
