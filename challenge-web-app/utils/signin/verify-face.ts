@@ -44,7 +44,7 @@ export const verifyFace = async (
 
     const similarity = 1 - Math.min(distance, 1.0);
     const outputPath = createOutputImage(img);
-    const message = getMessage(similarity);
+    const message = await getMessage(similarity);
 
     return {
       verified: similarity > 0.6,
