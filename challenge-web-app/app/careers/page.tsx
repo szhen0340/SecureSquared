@@ -76,7 +76,7 @@ export default function Careers() {
     }
   }, []);
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     const file = values.resume[0];
     const reader = new FileReader();
 
@@ -125,7 +125,7 @@ export default function Careers() {
     if (fileInput) {
       fileInput.value = "";
     }
-  }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-zinc-900 to-zinc-950">

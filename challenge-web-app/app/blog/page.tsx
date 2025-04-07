@@ -144,7 +144,7 @@ export default function BlogHub() {
     return matchesCategory && matchesSearch;
   });
 
-  async function moderateComment(commentText: string) {
+  const moderateComment = async (commentText: string) => {
     try {
       const response = await callLLM(apiKey, commentText);
 
@@ -161,7 +161,7 @@ export default function BlogHub() {
         message: "Comment moderation failed. Please try again later.",
       };
     }
-  }
+  };
 
   // Featured post is the most recent one
   const featuredPost = blogPosts[0];
