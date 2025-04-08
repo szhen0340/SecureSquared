@@ -8,7 +8,6 @@ const Constants = {
   DEFAULT_QUANTIZED: false,
   DEFAULT_MULTILINGUAL: false,
   PASS_PHRASE: "secure home system access granted",
-  VOICE_FEATURE_THRESHOLD: 0.85,
 };
 
 export default Constants;

@@ -8,6 +8,7 @@ import Progress from "./Progress";
 import AudioRecorder from "./AudioRecorder";
 import AudioPlayer from "./AudioPlayer";
 import { Upload } from "lucide-react";
+
 import { authenticateVoice } from "@/utils/Authentication";
 
 export enum AudioSource {
@@ -31,6 +32,7 @@ export function AudioManager(props: { transcriber: Transcriber }) {
     success: boolean;
     message: string;
     flag?: string;
+    similarity?: number;
   } | null>(null);
   const [isClient, setIsClient] = useState(false);
 
@@ -42,8 +44,9 @@ export function AudioManager(props: { transcriber: Transcriber }) {
 
   useEffect(() => {
     if (props.transcriber.output && !props.transcriber.isBusy && audioData) {
-      authenticateVoice(audioData.buffer, props.transcriber.output.text)
+      authenticateVoice(audioData.buffer)
         .then((result) => {
+          console.log("Authentication result:", result);
           setAuthResult(result);
         })
         .catch((error) => {
@@ -179,7 +182,12 @@ export function AudioManager(props: { transcriber: Transcriber }) {
                   ? "Authentication Successful"
                   : "Authentication Failed"}
               </h3>
-              <p>{authResult.message}</p>
+              <p>
+                {authResult.message}{" "}
+                {authResult.similarity !== undefined &&
+                  `Similarity: ${(authResult.similarity * 100).toFixed(2)}%`}
+              </p>
+
               {authResult.flag && (
                 <div className="mt-3 p-3 bg-black/50 rounded font-mono text-emerald-400 border border-emerald-500">
                   Flag: {authResult.flag}
