@@ -1,15 +1,11 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-
-import Constants from "../utils/Constants";
-import { Transcriber } from "../hooks/useTranscriber";
-import Progress from "./Progress";
 import AudioRecorder from "./AudioRecorder";
 import AudioPlayer from "./AudioPlayer";
 import { Upload } from "lucide-react";
 
-import { authenticateVoice } from "@/utils/Authentication";
+import { authenticateVoice } from "@/utils/authentication";
 
 export enum AudioSource {
   URL = "URL",
@@ -17,7 +13,7 @@ export enum AudioSource {
   RECORDING = "RECORDING",
 }
 
-export function AudioManager(props: { transcriber: Transcriber }) {
+export function AudioManager() {
   const [progress, setProgress] = useState<number | undefined>(undefined);
   const [audioData, setAudioData] = useState<
     | {
@@ -43,7 +39,7 @@ export function AudioManager(props: { transcriber: Transcriber }) {
   }, []);
 
   useEffect(() => {
-    if (props.transcriber.output && !props.transcriber.isBusy && audioData) {
+    if (audioData) {
       authenticateVoice(audioData.buffer)
         .then((result) => {
           console.log("Authentication result:", result);
@@ -57,7 +53,7 @@ export function AudioManager(props: { transcriber: Transcriber }) {
           });
         });
     }
-  }, [props.transcriber.output, props.transcriber.isBusy, audioData]);
+  }, [audioData]);
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
@@ -75,19 +71,16 @@ export function AudioManager(props: { transcriber: Transcriber }) {
       if (!arrayBuffer) return;
 
       const audioCTX = new AudioContext({
-        sampleRate: Constants.SAMPLING_RATE,
+        sampleRate: 16000,
       });
 
       const decoded = await audioCTX.decodeAudioData(arrayBuffer);
-      props.transcriber.onInputChange();
       setAudioData({
         buffer: decoded,
         url: urlObj,
         source: AudioSource.FILE,
         mimeType: mimeType,
       });
-
-      props.transcriber.start(decoded);
     };
     reader.readAsArrayBuffer(file);
 
@@ -96,8 +89,6 @@ export function AudioManager(props: { transcriber: Transcriber }) {
   };
 
   const handleRecordingComplete = (blob: Blob) => {
-    props.transcriber.onInputChange();
-
     setAuthResult(null);
 
     const blobUrl = URL.createObjectURL(blob);
@@ -107,7 +98,7 @@ export function AudioManager(props: { transcriber: Transcriber }) {
     };
     fileReader.onloadend = async () => {
       const audioCTX = new AudioContext({
-        sampleRate: Constants.SAMPLING_RATE,
+        sampleRate: 16000,
       });
       const arrayBuffer = fileReader.result as ArrayBuffer;
       const decoded = await audioCTX.decodeAudioData(arrayBuffer);
@@ -118,8 +109,6 @@ export function AudioManager(props: { transcriber: Transcriber }) {
         source: AudioSource.RECORDING,
         mimeType: blob.type,
       });
-
-      props.transcriber.start(decoded);
     };
     fileReader.readAsArrayBuffer(blob);
   };
@@ -162,13 +151,6 @@ export function AudioManager(props: { transcriber: Transcriber }) {
         <>
           <AudioPlayer audioUrl={audioData.url} mimeType={audioData.mimeType} />
 
-          {props.transcriber.output && (
-            <div className="p-3 bg-zinc-800/50 rounded">
-              <h3 className="font-medium text-zinc-300 mb-1">Transcription:</h3>
-              <p className="text-zinc-100">{props.transcriber.output.text}</p>
-            </div>
-          )}
-
           {authResult && (
             <div
               className={`p-4 rounded-lg text-zinc-200 ${
@@ -193,19 +175,6 @@ export function AudioManager(props: { transcriber: Transcriber }) {
                   Flag: {authResult.flag}
                 </div>
               )}
-            </div>
-          )}
-
-          {props.transcriber.progressItems.length > 0 && (
-            <div className="relative z-10 p-4 w-full">
-              <label className="text-gray-300 text-sm">
-                Loading model files... (only run once)
-              </label>
-              {props.transcriber.progressItems.map((data) => (
-                <div key={data.file}>
-                  <Progress text={data.file} percentage={data.progress} />
-                </div>
-              ))}
             </div>
           )}
         </>

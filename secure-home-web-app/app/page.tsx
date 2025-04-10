@@ -1,23 +1,7 @@
-"use client";
-
 import { AudioManager } from "@/components/AudioManager";
-import { useTranscriber } from "@/hooks/useTranscriber";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-
-import { useState } from "react";
 
 export default function Home() {
-  const transcriber = useTranscriber();
-  const [dialogOpen, setDialogOpen] = useState(false);
-
   const getStatusIcon = () => (
     <svg
       className="w-8 h-8 text-emerald-400"
@@ -55,31 +39,9 @@ export default function Home() {
             </div>
           </div>
 
-          <AudioManager transcriber={transcriber} />
+          <AudioManager />
         </CardContent>
       </Card>
-
-      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent className="bg-zinc-900 border-zinc-800 text-zinc-100">
-          <DialogHeader>
-            <DialogTitle className="text-emerald-400">
-              Access Granted
-            </DialogTitle>
-            <DialogDescription className="text-zinc-400">
-              Voice pattern recognized. Welcome home.
-              <div className="mt-4 p-3 bg-zinc-800 rounded-md border border-zinc-700 font-mono text-emerald-400">
-                {"FLAG: CTF{v01c3_r3c0gn1t10n_byp4ss3d}"}
-              </div>
-            </DialogDescription>
-          </DialogHeader>
-          <Button
-            className="bg-emerald-500 hover:bg-emerald-600 text-white mt-4"
-            onClick={() => setDialogOpen(false)}
-          >
-            Close
-          </Button>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }

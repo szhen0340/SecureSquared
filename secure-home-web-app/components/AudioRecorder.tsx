@@ -2,8 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 
-import { formatAudioTimestamp } from "../utils/AudioUtils";
-import { webmFixDuration } from "../utils/BlobFix";
+import { formatAudioTimestamp } from "../utils/audio-utils";
+import { webmFixDuration } from "../utils/blob-fix";
 import { Mic } from "lucide-react";
 
 function getMimeType() {
