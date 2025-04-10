@@ -1,6 +1,6 @@
 # SecureSquared Face Recognition Challenge Solution
 
-This repository contains a possible solution to the SecureSquared CTF Face Recognition Challenge.
+This repository contains a possible solution to the SecureSquared Face Recognition Challenge.
 
 ## Analyzing the Authentication System
 
@@ -17,20 +17,18 @@ Upon submitting an image for authentication, you'll notice a request to `signin.
 To understand how these embeddings are processed, check the Sources tab in Developer Tools. You'll find that the application is using face-api.js, a JavaScript API for face recognition.
 
 Looking deeper into the implementation, you can see that:
+![Source Image](./source.png)
+The system uses face-api.js for its facial recognition system. By looking at the documentation for face-api.js we can determine a few things.
 
-1. The system detects faces in the uploaded image using a Single Shot Multibox Detector (SSD) based on MobileNetV1
-2. It then extracts facial landmarks (68 points) to align the face properly
-3. A face descriptor (embedding) is generated for the detected face
-4. The system compares this descriptor with reference descriptors using Euclidean distance
-5. Authentication succeeds when the Euclidean distance is below a certain threshold (0.6 in this case)
+1. A face descriptor (embedding) is generated for the detected face
+2. The system compares this descriptor with reference descriptors using Euclidean distance
+3. Authentication succeeds when the Euclidean distance is below a certain threshold (0.6 in this case)
+
+![Source Image 1](./source1.png)
 
 With this knowledge of how the system calculates similarity scores using Euclidean distance and the availability of the face descriptors through network monitoring, you have all the necessary components to develop an optimization-based method to bypass the authentication system.
 
-## Overview
-
-The challenge involves bypassing a facial recognition authentication system without having physical access to an authorized user. My approach uses a genetic algorithm to evolve a set of seed images until a face that produces embeddings similar enough to the target to pass authentication is generated.
-
-## How It Works
+## Solution Approach
 
 The solution employs a genetic algorithm that:
 
