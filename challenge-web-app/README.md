@@ -1,6 +1,6 @@
 # SecureSquared
 
-SecureSquared is a fake AI company used as the theme for the AI/ML challenges I created for UIC's Capture the Flame event. This directory in particular contains the web app for SecureSquared.
+This repository contains the web app for SecureSquared.
 
 ## Getting Started
 
@@ -19,21 +19,3 @@ SecureSquared is a fake AI company used as the theme for the AI/ML challenges I 
    ```
 
 3. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
-
-## Project Structure (notable files)
-
-```
-challenge-web-app/
-├── components/
-│   ├── chat-assistant # Chat Assistant
-├── app/
-│   ├── blog/          # Blog Moderator
-│   ├── careers/       # Resume Screener
-│   ├── signin/        # Face Recognition
-├── utils/             # Utility functions for each challenge
-└── README.md          # This file
-```
-
-## Security Notice
-
-This application intentionally contains security vulnerabilities for educational purposes. It should not be used in production environments or to process real user data.
