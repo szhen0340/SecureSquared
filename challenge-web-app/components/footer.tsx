@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import { Shield, ExternalLink, Lock, Code, Terminal } from "lucide-react";
 import Link from "next/link";
 
@@ -30,17 +29,24 @@ export default function Footer() {
               <span>ADVANCED</span>
             </h3>
             <ul className="space-y-3 text-center md:text-left">
-              {["FinanceGuard", "HealthSync", "SecureHome"].map((link) => (
-                <li key={link}>
-                  <a
-                    href={link.toLowerCase()}
-                    className="text-zinc-400 hover:text-emerald-400 transition-colors inline-flex items-center"
-                  >
-                    <span>{link}</span>
-                    <ExternalLink className="ml-1 h-3 w-3 opacity-70" />
-                  </a>
-                </li>
-              ))}
+              <li>
+                <Link
+                  href="/signin"
+                  className="text-zinc-400 hover:text-emerald-400 transition-colors inline-flex items-center"
+                >
+                  <span>Facial Recognition</span>
+                  <ExternalLink className="ml-1 h-3 w-3 opacity-70" />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="https://ctf-secure-home.vercel.app/"
+                  className="text-zinc-400 hover:text-emerald-400 transition-colors inline-flex items-center"
+                >
+                  <span>Voice Authentication</span>
+                  <ExternalLink className="ml-1 h-3 w-3 opacity-70" />
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -51,17 +57,33 @@ export default function Footer() {
               <span>BEGINNER</span>
             </h3>
             <ul className="space-y-3 text-center md:text-left">
-              {["Careers", "Blog", "Signin"].map((link) => (
-                <li key={link}>
-                  <a
-                    href={link.toLowerCase()}
-                    className="text-zinc-400 hover:text-emerald-400 transition-colors inline-flex items-center"
-                  >
-                    <span>{link}</span>
-                    <ExternalLink className="ml-1 h-3 w-3 opacity-70" />
-                  </a>
-                </li>
-              ))}
+              <li>
+                <Link
+                  href="/"
+                  className="text-zinc-400 hover:text-emerald-400 transition-colors inline-flex items-center"
+                >
+                  <span>Chat Assistant</span>
+                  <ExternalLink className="ml-1 h-3 w-3 opacity-70" />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/blog"
+                  className="text-zinc-400 hover:text-emerald-400 transition-colors inline-flex items-center"
+                >
+                  <span>Blog Moderator</span>
+                  <ExternalLink className="ml-1 h-3 w-3 opacity-70" />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/careers"
+                  className="text-zinc-400 hover:text-emerald-400 transition-colors inline-flex items-center"
+                >
+                  <span>Resume Screener</span>
+                  <ExternalLink className="ml-1 h-3 w-3 opacity-70" />
+                </Link>
+              </li>
             </ul>
           </div>
 

@@ -22,7 +22,11 @@ export default function Navigation() {
             (item) => (
               <Link
                 key={item}
-                href={"/" + item.toLowerCase()}
+                href={
+                  item === "SecureHome"
+                    ? "https://ctf-secure-home.vercel.app/"
+                    : "/" + item.toLowerCase()
+                }
                 className={`text-sm ${
                   "/" + item.toLowerCase() === pathname
                     ? "text-emerald-400"

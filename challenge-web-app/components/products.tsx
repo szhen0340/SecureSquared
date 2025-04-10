@@ -132,7 +132,7 @@ export default function Products() {
                 </li>
               ))}
             </ul>
-            <Link href="/securehome">
+            <Link href="https://ctf-secure-home.vercel.app/">
               <Button
                 variant="outline"
                 className="w-full border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-emerald-400 group-hover:border-emerald-500/50 hover:cursor-pointer"
