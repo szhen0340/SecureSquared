@@ -1,8 +1,19 @@
-import {
-  tournamentSelection,
-  crossoverImages,
-  mutateImage,
-} from "./image-utils";
+import { crossoverImages, mutateImage } from "./image-utils";
+
+// Tournament selection for parent selection
+export const tournamentSelection = (fitnessScores) => {
+  const tournamentSize = Math.min(3, Math.floor(fitnessScores.length / 3));
+  const participants = [];
+
+  for (let i = 0; i < tournamentSize; i++) {
+    participants.push(Math.floor(Math.random() * fitnessScores.length));
+  }
+  return participants.reduce(
+    (best, current) =>
+      fitnessScores[current] > fitnessScores[best] ? current : best,
+    participants[0]
+  );
+};
 
 // Create next generation through selection, crossover, and mutation
 export const evolvePopulation = async (

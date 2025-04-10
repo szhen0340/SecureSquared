@@ -1,21 +1,3 @@
-// Tournament selection for parent selection
-export const tournamentSelection = (fitnessScores) => {
-  const tournamentSize = Math.min(3, Math.floor(fitnessScores.length / 3));
-  const participants = [];
-
-  // Select random participants
-  for (let i = 0; i < tournamentSize; i++) {
-    participants.push(Math.floor(Math.random() * fitnessScores.length));
-  }
-
-  // Return the best participant
-  return participants.reduce(
-    (best, current) =>
-      fitnessScores[current] > fitnessScores[best] ? current : best,
-    participants[0]
-  );
-};
-
 // Load image from data URL
 export const loadImage = (dataUrl) => {
   return new Promise((resolve, reject) => {
