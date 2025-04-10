@@ -4,8 +4,7 @@ import React, { useEffect, useState } from "react";
 import AudioRecorder from "./AudioRecorder";
 import AudioPlayer from "./AudioPlayer";
 import { Upload } from "lucide-react";
-
-import { authenticateVoice } from "@/utils/authentication";
+import { authenticateVoice } from "@/utils/authenticate";
 
 export enum AudioSource {
   URL = "URL",
