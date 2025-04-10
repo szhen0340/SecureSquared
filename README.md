@@ -1,6 +1,6 @@
-# SecureSquared CTF Challenges
+# SecureSquared
 
-Welcome to SecureSquared's Capture The Flag (CTF) challenges! Test your skills in machine learning security and explore the vulnerabilities in our advanced AI systems.
+Welcome to SecureSquared's challenges! SecureSquared is a fake AI company used as the theme for the AI/ML challenges I created for UIC's Capture the Flame event.
 
 ## Quick Navigation
 
@@ -68,7 +68,7 @@ This is actually a good security practice as it:
 2. Gives the LLM context about how to process the input
 3. Prevents the user input from being interpreted as part of the system instructions
 
-Without this guardrail, the challenge became basically the same as the Chat Assistant challenge. When user input is sent directly to the LLM without proper wrapping, the model treats it as a direct instruction, making prompt injection trivially easy. The wrapping approach would require participants to develop more sophisticated attack techniques.
+Without this guardrail, the challenge is trivial. When user input is sent directly to the LLM without proper wrapping, the model treats it as a direct instruction, making prompt injection easy. The wrapping approach would require participants to develop more sophisticated attack techniques.
 
 One effective solution is to comment the following:
 
@@ -170,6 +170,8 @@ This prompt injection technique works because it first presents itself as a legi
 **Description:** SecureSquared's Secure Home division has deployed an advanced voice authentication system to protect their most sensitive client properties. The system uses AI-powered voice recognition technology to verify the speaker's unique vocal characteristics.
 
 **Task:** Access the Secure Home system by bypassing the voice authentication mechanism. You'll need to analyze the underlying system and craft an audio file that matches the target voice characteristics.
+
+As part of your mission briefing, you've been provided with a base audio sample of an authorized user saying the required passphrase. This sample gives you the correct words and timing, but the voice characteristics don't match the target profile stored in the system. Your challenge is to modify this base audio sample to match the voice characteristics of the target user.
 
 **Link:** [Secure Home](https://ctf-secure-home.vercel.app)
 
