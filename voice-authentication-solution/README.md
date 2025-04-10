@@ -52,3 +52,5 @@ Our solution uses an optimization-based approach to generate an audio sample tha
 The optimization process typically achieves a similarity score above 0.7 within 500 iterations, which is sufficient to bypass the authentication system.
 
 `solution.wav` is the optimized audio that bypassed the system.
+
+The original problem included creating audio that passed the transcription model while passing the speaker identification system. This made the problem exponentially harder so I decided to take out the transcription part to make it easier.
