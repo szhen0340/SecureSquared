@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 
-import { extractVoiceEmbeddings } from "./EmbeddingModel";
-import { getFlag } from "./GetFlag";
-import embedding from "@/embedding.json";
+import { extractVoiceEmbeddings } from "./embedding-model";
+import { getFlag } from "./get-flag";
 
 function extractEmbeddingArray(embedding) {
   // Handle authorized embeddings loaded from storage
@@ -54,7 +53,14 @@ function calculateCosineSimilarity(embeddingA, embeddingB) {
 export const authenticateVoice = async (audioBuffer: AudioBuffer) => {
   const currentEmbedding = await extractVoiceEmbeddings(audioBuffer);
 
-  const similarity = calculateCosineSimilarity(currentEmbedding, embedding);
+  const targetEmbedding = await fetch("/embedding.json").then((res) =>
+    res.json()
+  );
+
+  const similarity = calculateCosineSimilarity(
+    currentEmbedding,
+    targetEmbedding
+  );
 
   if (similarity > 0.7) {
     return {
