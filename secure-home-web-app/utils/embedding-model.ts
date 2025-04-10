@@ -1,7 +1,9 @@
 import * as onnxruntime from "onnxruntime-web";
 
 export const extractVoiceEmbeddings = async (audioBuffer: AudioBuffer) => {
-  const session = await onnxruntime.InferenceSession.create("./model.onnx");
+  const session = await onnxruntime.InferenceSession.create(
+    "./pyannote-embeddings.onnx"
+  );
 
   const processedData = audioBuffer.getChannelData(0);
 
