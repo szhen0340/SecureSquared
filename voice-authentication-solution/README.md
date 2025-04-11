@@ -26,11 +26,13 @@ From analyzing the web application code, we can determine that:
 2. It compares these embeddings to the target embeddings using cosine similarity
 3. Authentication succeeds when the similarity exceeds a certain threshold
 
-By examining the source code (accessible via the Sources tab in Developer Tools), you can see that the system uses a **cosine similarity** measure with a threshold of **0.7** for authentication.
+By examining the sources tab, you can see that the system uses a **cosine similarity** measure with a threshold of **0.7** for authentication.
+
+![source](source.png)
 
 ## Solution Approach
 
-Our solution uses an optimization-based approach to generate an audio sample that produces embeddings similar to the target:
+My solution uses an optimization-based approach to generate an audio sample that produces embeddings similar to the target:
 
 1. Start with a base audio sample (can be any human voice)
 2. Extract the target embeddings from the `embeddings.json` file
