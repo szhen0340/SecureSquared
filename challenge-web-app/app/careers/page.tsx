@@ -106,8 +106,7 @@ export default function Careers() {
         console.error("Error processing resume:", error);
         setSubmissionResult({
           success: false,
-          message:
-            "An error occurred while processing your resume. Please try again.",
+          message: ("Error: " + error) as string,
         });
         setShowSubmissionResult(true);
       }
