@@ -1,10 +1,11 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-// @ts-nocheck
-
 import { extractVoiceEmbeddings } from "./embedding-model";
-import { getFlag } from "./get-flag";
+import { calculateSimilarity } from "./calculate-similarity";
 
-function extractEmbeddingArray(embedding) {
+function extractEmbeddingArray(embedding: {
+  cpuData: any[];
+  dims: number[];
+  size: number;
+}) {
   // Handle authorized embeddings loaded from storage
   if (Array.isArray(embedding)) {
     return embedding;
@@ -26,15 +27,7 @@ function extractEmbeddingArray(embedding) {
   throw new Error("Cannot extract embedding data");
 }
 
-function calculateCosineSimilarity(embeddingA, embeddingB) {
-  const a = extractEmbeddingArray(embeddingA);
-  const b = extractEmbeddingArray(embeddingB);
-
-  if (a.length !== b.length) {
-    console.error(`Dimension mismatch: ${a.length} vs ${b.length}`);
-    return 0;
-  }
-
+function calculateCosineSimilarity(a: any[], b: number[]) {
   let dotProduct = 0;
   let normA = 0;
   let normB = 0;
@@ -57,22 +50,24 @@ export const authenticateVoice = async (audioBuffer: AudioBuffer) => {
     res.json()
   );
 
-  const similarity = calculateCosineSimilarity(
-    currentEmbedding,
-    targetEmbedding
+  const currentEmbeddingArray = extractEmbeddingArray(currentEmbedding);
+  const targetEmbeddingArray = extractEmbeddingArray(targetEmbedding);
+
+  const { similarity, message } = await calculateSimilarity(
+    currentEmbeddingArray,
+    targetEmbeddingArray
   );
 
   if (similarity > 0.7) {
     return {
       success: true,
-      message: "Voice authenticated.",
-      flag: await getFlag(),
+      message: message,
       similarity: similarity,
     };
   } else {
     return {
       success: false,
-      message: "Voice not recognized.",
+      message: message,
       similarity: similarity,
     };
   }
