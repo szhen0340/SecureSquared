@@ -106,7 +106,7 @@ export default function Careers() {
         console.error("Error processing resume:", error);
         setSubmissionResult({
           success: false,
-          message: ("Error: " + error) as string,
+          message: "Invalid API key. Put or renew API key in Chat Assistant.",
         });
         setShowSubmissionResult(true);
       }
