@@ -53,6 +53,9 @@ export const authenticateVoice = async (audioBuffer: AudioBuffer) => {
   const currentEmbeddingArray = extractEmbeddingArray(currentEmbedding);
   const targetEmbeddingArray = extractEmbeddingArray(targetEmbedding);
 
+  // Expose cosine similarity
+  calculateCosineSimilarity(currentEmbeddingArray, targetEmbeddingArray);
+
   const { similarity, message } = await calculateSimilarity(
     currentEmbeddingArray,
     targetEmbeddingArray
