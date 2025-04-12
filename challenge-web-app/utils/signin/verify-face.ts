@@ -1,6 +1,6 @@
 import * as faceapi from "face-api.js";
 import { loadImage, createOutputImage } from "./process-images";
-import { calculateSimilarity, getMessage } from "./calculate-similarity";
+import { calculateSimilarity } from "./calculate-similarity";
 
 export interface VerificationResult {
   verified: boolean;
