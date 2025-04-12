@@ -1,6 +1,6 @@
 import * as faceapi from "face-api.js";
 import { loadImage, createOutputImage } from "./process-images";
-import { getMessage } from "./get-message";
+import { calculateSimilarity, getMessage } from "./calculate-similarity";
 
 export interface VerificationResult {
   verified: boolean;
@@ -37,14 +37,11 @@ export const verifyFace = async (
       return prevArea > currentArea ? prev : current;
     });
 
-    const distance = faceapi.euclideanDistance(
+    const outputPath = createOutputImage(img);
+    const { message, similarity } = await calculateSimilarity(
       face.descriptor,
       targetDescriptor
     );
-
-    const similarity = 1 - Math.min(distance, 1.0);
-    const outputPath = createOutputImage(img);
-    const message = await getMessage(similarity);
 
     return {
       verified: similarity > 0.6,
