@@ -1,6 +1,8 @@
 # SecureSquared Face Recognition Challenge Solution
 
-This repository contains a possible solution to the SecureSquared Face Recognition Challenge.
+This repository contains the intended solution to the SecureSquared Face Recognition Challenge.
+
+**NOTE:** The challenge has an unintended solution where you can modify the authentication request to return the flag, skipping the AI part. This is a result of me juggling challenge difficulty, keeping it in the theme of the web app, and making development easy. Big oversight from me.
 
 ## Analyzing the Authentication System
 
